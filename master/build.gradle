@@ -1,0 +1,39 @@
+// ビルド設定
+
+// プロジェクト基本設定
+group "${productGroup}"
+version "${productVersion}"
+
+// Gradle Wrapperの設定
+// `gradlew.bat wrapper` で下記バージョンのGradleが取得される。
+wrapper {
+    gradleVersion = '6.2.1'
+}
+
+// 全プロジェクトの共通設定
+allprojects {
+
+}
+
+// サブプロジェクトの共通設定
+subprojects {
+
+}
+
+import groovy.json.StringEscapeUtils
+
+// ワークスペースの生成
+task generateWorkspace {
+    doFirst {
+        copy {
+            from file("$rootDir/project.code-workspace.template")
+            expand userJavaHome: StringEscapeUtils.escapeJavaScript(System.getenv()['JAVA_HOME'])
+            rename { 'project.code-workspace' }
+            into "$rootDir/../"
+        }
+    }
+}
+
+// ワークスペースの初期化
+task initializeWorkspace(dependsOn: [generateWorkspace]) {
+}

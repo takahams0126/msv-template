@@ -3,4 +3,5 @@
 .project
 .factorypath
 .settings/
-/morisoba.code-workspace
+.vscode/
+/*.code-workspace
