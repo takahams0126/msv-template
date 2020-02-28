@@ -9,13 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // CHECKSTYLE:OFF HideUtilityClassConstructor
 @SpringBootApplication
-public class DemoApplication {
+public class MsvApplication {
 
     /**
      * @param args 引数
      */
     public static void main(final String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(MsvApplication.class, args);
     }
 
 }

@@ -7,14 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
  * サンプルテストクラスです.
  */
 @SpringBootTest
-class DemoApplicationTests {
+class MsvApplicationTests {
 
     /**
      * テスト１.
      */
     @Test
     void contextLoads() {
-        Foo foo = new Foo();
+        final Foo foo = new Foo();
         foo.getAge();
         foo.getName();
     }
