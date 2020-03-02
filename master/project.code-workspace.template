@@ -43,7 +43,9 @@
             // gitignore extension for Visual Studio Code
             "codezombiech.gitignore",
             // Project Manager
-            "alefragnani.project-manager"
+            "alefragnani.project-manager",
+            // Docker
+            "ms-azuretools.vscode-docker"
         ]
     },
     "settings": {

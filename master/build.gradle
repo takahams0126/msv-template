@@ -10,6 +10,12 @@ wrapper {
     gradleVersion = '6.2.1'
 }
 
+repositories {
+	jcenter()
+	mavenCentral()
+	maven { url 'https://plugins.gradle.org/m2/' }
+}
+
 // 全プロジェクトの共通設定
 allprojects {
 

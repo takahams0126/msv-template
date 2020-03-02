@@ -19,4 +19,5 @@ class MsvApplicationTests {
         foo.getName();
     }
 
+
 }

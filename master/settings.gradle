@@ -1,1 +1,1 @@
-includeFlat 'msv-service1'
+includeFlat 'msv-db', 'msv-service1'
