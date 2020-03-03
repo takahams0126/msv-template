@@ -1,6 +1,6 @@
 version: '3'
 services:
-  msv-mysql:
+  msv_mysql:
     container_name: msv_mysql
     hostname: msv_mysql
     image: mysql:5.7

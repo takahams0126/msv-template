@@ -1,20 +1,33 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+    }
+    
+    dependencies {
+        classpath group: "org.flywaydb", name: "flyway-gradle-plugin", version: "${flywayVersion}"
+        classpath group: 'mysql', name: 'mysql-connector-java', version: "${mysqlDriverVersion}"
+    }
+}
+
 plugins {
-	id 'org.flywaydb.flyway' version "${flywayVersion}"
-	id 'nu.studer.jooq' version "${jooqPluginVersion}"
+    id 'org.flywaydb.flyway' version "${flywayVersion}"
+    id 'nu.studer.jooq' version "${jooqPluginVersion}"
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
-def dbUrl = "jdbc:mysql://${dbHost}:${dbPort}/${dbName}"
+def dbUrl = "jdbc:mysql://${dbHost}:${dbPort}/${dbName}?useSSL=false"
 def jdbcDriver = "com.mysql.jdbc.Driver"
+def jooqDestDir = "$buildDir/jooq-gen/"
+def jooqDestPackage = 'com.example.db.jooq.gen'
 
 flyway {
     url = "${dbUrl}"
     user = "${dbUser}"
     password = "${dbPassword}"
-    configurations = [ 'compileClasspath', 'flywayMigration' ]
 }
 
 
