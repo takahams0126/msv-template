@@ -1,1 +1,1 @@
-includeFlat "db-core", "db-custom-strategy", "msv-service1"
+includeFlat "db-core", "db-custom", "msv-core", "msv-service1"

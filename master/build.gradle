@@ -22,6 +22,21 @@ allprojects {
 // サブプロジェクトの共通設定
 subprojects {
 
+    apply plugin: "java"
+    apply plugin: "eclipse"
+
+    repositories {
+        mavenCentral()
+    }
+
+    group = "${productGroup}"
+    version = "${productVersion}"
+    sourceCompatibility = "${javaVersion}"
+    targetCompatibility = "${javaVersion}"
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "${sourceEncoding}"
+    }
 
 }
 
