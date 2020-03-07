@@ -1,14 +1,19 @@
 #!/bin/bash
 
-# JAVA_HOME‚ğƒvƒƒWƒFƒNƒg”z‰º‚ÌJDK‚Éİ’è
+# JAVA_HOMEã‚’ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆé…ä¸‹ã®JDKã«è¨­å®š
 DIR=`echo $(cd $(dirname $0)/../jdk/amazon-corretto-11 && pwd)`
 JAVA_HOME=`echo $DIR | sed -e 's/^\/\([a-zA-Z]\)\//\1:\\\\/' | sed -e 's/\//\\\\/g'`
 
-# vscodeƒ[ƒNƒXƒy[ƒXİ’è‚ğ‰Šú‰»
+# MySQLã‚³ãƒ³ãƒ†ãƒŠã®ãƒ­ãƒ¼ã‚«ãƒ«Volumeå‘ã‘ã«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä½œæˆ
+mkdir -p ../db-core/docker/data
+mkdir -p ../db-core/docker/initdb.d
+mkdir -p ../db-core/docker/log
+
+# vscodeãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹è¨­å®šã‚’åˆæœŸåŒ–
 sh ./gradlew --stacktrace initializeWorkspace
 
-# vscode‚ÅJavaŠJ”­‚·‚éƒvƒƒWƒFƒNƒg‚Íeclipseƒ^ƒXƒN‚ğÀs
-# vscode‚ÅƒNƒ‰ƒXƒpƒX‚È‚Ç‚ğ”F¯‚³‚¹‚é‚½‚ß
+# vscodeã§Javaé–‹ç™ºã™ã‚‹ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯eclipseã‚¿ã‚¹ã‚¯ã‚’å®Ÿè¡Œ
+# vscodeã§ã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ãªã©ã‚’èªè­˜ã•ã›ã‚‹ãŸã‚
 sh ./gradlew --stacktrace :db-core:eclipse
 sh ./gradlew --stacktrace :db-custom:eclipse
 sh ./gradlew --stacktrace :msv-core:eclipse
