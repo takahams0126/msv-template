@@ -29,15 +29,21 @@ dependencies {
 
 def dbUrl = "jdbc:mysql://${dbHost}:${dbPort}/${dbName}?useSSL=false"
 def jdbcDriver = "com.mysql.jdbc.Driver"
-def jooqDestDir = "$buildDir/jooq-gen/"
+def jooqDestDir = "${buildDir}/jooq-gen/"
 def jooqDestPackage = "jp.co.ctc.wjs.db.jooq.gen"
 
+// ----------------------------------------------------------------------------------
+// Flyway設定
+// ----------------------------------------------------------------------------------
 flyway {
     url = "${dbUrl}"
     user = "${dbUser}"
     password = "${dbPassword}"
 }
 
+// ----------------------------------------------------------------------------------
+// JOOQコード生成設定
+// ----------------------------------------------------------------------------------
 jooq {
     version = "${jooqVersion}"
     edition = 'OSS' // if you use oracle, you should pay :-)
@@ -71,12 +77,19 @@ jooq {
     }
 }
 
+// ----------------------------------------------------------------------------------
+// タスク依存関係定義
+// ----------------------------------------------------------------------------------
 
+// Javaコンパイルの前にJOOQコード生成を行う
 compileJava {
     dependsOn generateSampleJooqSchemaSource
     sourceSets.main.java.srcDirs(jooqDestDir)
 }
 
-generateSampleJooqSchemaSource.dependsOn flywayMigrate
+// JOOQコード生成の前にFlywayMigreteを行う
+generateSampleJooqSchemaSource {
+    dependsOn flywayMigrate
+}
 
 

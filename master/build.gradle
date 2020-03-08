@@ -40,20 +40,25 @@ subprojects {
 
 }
 
+// ----------------------------------------------------------------------------------
+// ワークスペースの生成タスク
+// ----------------------------------------------------------------------------------
 import groovy.json.StringEscapeUtils
-
-// ワークスペースの生成
 task generateWorkspace {
     doFirst {
         copy {
-            from file("$rootDir/project.code-workspace.template")
+            from file("${rootDir}/project.code-workspace.template")
             expand userJavaHome: StringEscapeUtils.escapeJavaScript(System.getenv()['JAVA_HOME'])
             rename { 'project.code-workspace' }
-            into "$rootDir/../"
+            into "${rootDir}/../"
         }
     }
 }
 
-// ワークスペースの初期化
-task initializeWorkspace(dependsOn: [generateWorkspace]) {
+// ----------------------------------------------------------------------------------
+// プロジェクト初期化タスク
+// ----------------------------------------------------------------------------------
+task initProject() {
+    dependsOn generateWorkspace
 }
+
