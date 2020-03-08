@@ -19,7 +19,7 @@ plugins {
 
 dependencies {
     implementation "org.jooq:jooq:${jooqVersion}"
-    implementation "javax.annotation:javax.annotation-api:${javaxAnnotationApi}"
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
     testImplementation "org.flywaydb:flyway-core:${flywayVersion}"
     testImplementation "org.springframework.boot:spring-boot-starter-data-jdbc:${springBootVersion}"
     jooqRuntime "mysql:mysql-connector-java:${mysqlDriverVersion}"
@@ -27,10 +27,6 @@ dependencies {
     jooqRuntime project(':db-custom')
 }
 
-def dbUrl = "jdbc:mysql://${dbHost}:${dbPort}/${dbName}?useSSL=false"
-def jdbcDriver = "com.mysql.jdbc.Driver"
-def jooqDestDir = "${buildDir}/jooq-gen/"
-def jooqDestPackage = "jp.co.ctc.wjs.db.jooq.gen"
 
 // ----------------------------------------------------------------------------------
 // Flyway設定
@@ -44,6 +40,7 @@ flyway {
 // ----------------------------------------------------------------------------------
 // JOOQコード生成設定
 // ----------------------------------------------------------------------------------
+def jooqDestDir = "${buildDir}/jooq-gen/"
 jooq {
     version = "${jooqVersion}"
     edition = 'OSS' // if you use oracle, you should pay :-)

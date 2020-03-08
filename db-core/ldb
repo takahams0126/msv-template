@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# Usage: db command
+# ローカル開発環境でのDB操作スクリプトです。
+# ローカル環境ではDockerでMySQLコンテナを起動して利用します。
+# 第1引数にコマンドを指定します。
+
+# Usage: ldb command
 #
 # command:
 #   start       MySQLコンテナを再起動してFlywayMigrateを実行する
@@ -24,7 +28,7 @@ function db_start()
     # Docker-Composeの停止と開始
     docker-compose -f ./docker/docker-compose.yml stop
     docker-compose -f ./docker/docker-compose.yml up -d
-    
+
     sleep 2
 
     # MySQLコンテナが起動するまで待機する
@@ -34,11 +38,11 @@ function db_start()
     do
         echo "cheking...."
         docker-compose -f ./docker/docker-compose.yml exec msv_mysql mysql -u root -ppassword -e'select 1'  #> /dev/null 2>&1
-        
+
         if [ $? -eq 0 ]; then
             alive_mysql=1
         fi
-        
+
         sleep 2
     done
 
