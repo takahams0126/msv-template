@@ -53,10 +53,6 @@
         "java.home": "${userJavaHome}",
         "java.format.settings.url": "master/formatter/java/java_formatter.xml",
         "java.configuration.updateBuildConfiguration": "automatic",
-        "java.checkstyle.configuration": "master/checkstyle/checkstyle.xml",
-        "java.checkstyle.properties": {
-            "basedir": "${workspaceFolder}"
-        },
         "files.exclude": {
             "**/.classpath": true,
             "**/.project": true,

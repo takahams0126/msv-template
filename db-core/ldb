@@ -81,8 +81,9 @@ function db_migrate()
 # --------------------------------------------------
 function db_testdata()
 {
-    sh ../master/gradlew --stacktrace flywayMigrate -Dflyway.locations=filesystem:./src/test/resources/testdata
-    #sh ../master/gradlew --stacktrace flywayMigrate -Dflyway.locations=classpath:testdata
+    sh ../master/gradlew -i --stacktrace flywayMigrate -Dflyway.locations=classpath:testdata
+    #sh ../master/gradlew -i flywayMigrate -Dflyway.locations=filesystem:./src/test/resources/testdata
+    #sh ../master/gradlew -i flywayMigrate -Dflyway.locations=classpath:testdata
 }
 
 # --------------------------------------------------

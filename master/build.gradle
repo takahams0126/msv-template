@@ -77,7 +77,6 @@ task generateWorkspace {
             from file("${rootDir}/project.code-workspace.template")
             expand([
                 userJavaHome: StringEscapeUtils.escapeJavaScript(System.getenv()['JAVA_HOME']),
-                workspaceFolder: '${workspaceFolder}'
             ])
             rename { 'project.code-workspace' }
             into "${rootDir}/../"

@@ -11,10 +11,13 @@
     <property name="fileExtensions" value="java, properties, xml"/>
 
     <module name="BeforeExecutionExclusionFileFilter">
-        <property name="fileNamePattern" value="module\-info\.java$"/>
+<!--
+        <property name="fileNamePattern" value=".*JMsvDb\.java$"/>
+-->
     </module>
     <module name="SuppressionFilter">
-        <property name="file" value="./master/checkstyle/suppressions.xml"/>
+        <property name="file" value="c:/Users/takahams/git/msv-template/master/checkstyle/suppressions.xml"/>
+        <property name="optional" value="false"/>
     </module>
 <!--
     <module name="JavadocPackage"/>

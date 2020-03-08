@@ -10,5 +10,7 @@ CREATE TABLE msv_user (
 CREATE TABLE item (
     id               INT NOT NULL,
     name             VARCHAR(20) NOT NULL,
+    created_at       DATETIME DEFAULT NULL,
+    updated_at       DATETIME DEFAULT NULL,
     PRIMARY KEY (id)
 );
