@@ -14,7 +14,7 @@ springDependencyManagementVersion="1.0.9.RELEASE"
 flywayVersion="6.2.4"
 
 // jooq
-jooqVersion="3.13.1"
+jooqVersion="3.12.3"
 jooqPluginVersion="4.1"
 jooqDestPackage="jp.co.ctc.wjs.db.jooq.gen"
 

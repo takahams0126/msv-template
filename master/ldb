@@ -26,8 +26,8 @@ set -ue
 function db_start()
 {
     # Docker-Composeの停止と開始
-    docker-compose -f ./docker/docker-compose.yml stop
-    docker-compose -f ./docker/docker-compose.yml up -d
+    docker-compose -f ../db-core/docker/docker-compose.yml stop
+    docker-compose -f ../db-core/docker/docker-compose.yml up -d
 
     sleep 2
 
@@ -37,7 +37,7 @@ function db_start()
     while [ $alive_mysql -lt 1 ]
     do
         echo "cheking...."
-        docker-compose -f ./docker/docker-compose.yml exec msv_mysql mysql -u root -ppassword -e'select 1'  #> /dev/null 2>&1
+        docker-compose -f ../db-core/docker/docker-compose.yml exec msv_mysql mysql -u root -ppassword -e'select 1'  #> /dev/null 2>&1
 
         if [ $? -eq 0 ]; then
             alive_mysql=1
@@ -48,7 +48,7 @@ function db_start()
 
     # FlywayMigrateを実行
     echo "start migrate ...."
-    sh ../master/gradlew flywayMigrate
+    sh ./gradlew -i flywayMigrate
 }
 
 # --------------------------------------------------
@@ -56,7 +56,7 @@ function db_start()
 # --------------------------------------------------
 function db_stop()
 {
-    docker-compose -f ./docker/docker-compose.yml stop
+    docker-compose -f ../db-core/docker/docker-compose.yml stop
 }
 
 # --------------------------------------------------
@@ -64,8 +64,8 @@ function db_stop()
 # --------------------------------------------------
 function db_status()
 {
-    docker-compose -f ./docker/docker-compose.yml ps -a
-    sh ../master/gradlew flywayInfo
+    docker-compose -f ../db-core/docker/docker-compose.yml ps -a
+    sh ./gradlew flywayInfo
 }
 
 # --------------------------------------------------
@@ -73,7 +73,7 @@ function db_status()
 # --------------------------------------------------
 function db_migrate()
 {
-    sh ../master/gradlew -i flywayMigrate
+    sh ./gradlew -i flywayMigrate
 }
 
 # --------------------------------------------------
@@ -81,7 +81,7 @@ function db_migrate()
 # --------------------------------------------------
 function db_testdata()
 {
-    sh ../master/gradlew -i --stacktrace flywayMigrate -Dflyway.locations=classpath:testdata
+    sh ./gradlew -i --stacktrace flywayMigrate -Dflyway.locations=classpath:testdata
     #sh ../master/gradlew -i flywayMigrate -Dflyway.locations=filesystem:./src/test/resources/testdata
     #sh ../master/gradlew -i flywayMigrate -Dflyway.locations=classpath:testdata
 }
@@ -91,7 +91,7 @@ function db_testdata()
 # --------------------------------------------------
 function db_clean()
 {
-    sh ../master/gradlew flywayClean
+    sh ./gradlew flywayClean
 }
 
 # --------------------------------------------------
@@ -99,7 +99,7 @@ function db_clean()
 # --------------------------------------------------
 function db_deepclean()
 {
-    docker-compose -f ./docker/docker-compose.yml rm -f
+    docker-compose -f ../db-core/docker/docker-compose.yml rm -f
 }
 
 # --------------------------------------------------
@@ -107,7 +107,7 @@ function db_deepclean()
 # --------------------------------------------------
 function db_repair()
 {
-    sh ../master/gradlew flywayRepair
+    sh ./gradlew flywayRepair
 }
 
 # --------------------------------------------------

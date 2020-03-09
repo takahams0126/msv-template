@@ -27,7 +27,7 @@ set -ue
 # --------------------------------------------------
 function db_status()
 {
-    sh ../master/gradlew -Penv=$1 flywayInfo
+    sh ./gradlew -Penv=$1 flywayInfo
 }
 
 # --------------------------------------------------
@@ -35,7 +35,7 @@ function db_status()
 # --------------------------------------------------
 function db_migrate()
 {
-    sh ../master/gradlew -Penv=$1 flywayMigrate
+    sh ./gradlew -Penv=$1 flywayMigrate
 }
 
 # --------------------------------------------------
@@ -43,7 +43,7 @@ function db_migrate()
 # --------------------------------------------------
 function db_testdata()
 {
-    sh ../master/gradlew --stacktrace -Penv=$1 flywayMigrate -Dflyway.locations=filesystem:./src/test/resources/testdata
+    sh ./gradlew --stacktrace -Penv=$1 flywayMigrate -Dflyway.locations=filesystem:./src/test/resources/testdata
 }
 
 # --------------------------------------------------
@@ -51,7 +51,7 @@ function db_testdata()
 # --------------------------------------------------
 function db_clean()
 {
-    sh ../master/gradlew -Penv=$1 flywayClean
+    sh ./gradlew -Penv=$1 flywayClean
 }
 
 # --------------------------------------------------
@@ -59,7 +59,7 @@ function db_clean()
 # --------------------------------------------------
 function db_repair()
 {
-    sh ../master/gradlew -Penv=$1 flywayRepair
+    sh ./gradlew -Penv=$1 flywayRepair
 }
 
 # --------------------------------------------------

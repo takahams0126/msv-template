@@ -6,7 +6,7 @@ buildscript {
 
     dependencies {
         // コード生成用の依存モジュール定義
-        //classpath "nu.studer:gradle-jooq-plugin:${jooqPluginVersion}"
+        classpath "nu.studer:gradle-jooq-plugin:${jooqPluginVersion}"
         classpath "org.flywaydb:flyway-gradle-plugin:${flywayVersion}"
         classpath "mysql:mysql-connector-java:${mysqlDriverVersion}"
     }
@@ -88,6 +88,10 @@ compileJava {
 // JOOQコード生成の前にFlywayMigreteを行う
 generateSampleJooqSchemaSource {
     dependsOn flywayMigrate
+}
+
+clean {
+    delete jooqDestDir
 }
 
 
