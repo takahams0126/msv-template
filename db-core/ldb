@@ -73,7 +73,7 @@ function db_status()
 # --------------------------------------------------
 function db_migrate()
 {
-    sh ../master/gradlew flywayMigrate
+    sh ../master/gradlew -i flywayMigrate
 }
 
 # --------------------------------------------------

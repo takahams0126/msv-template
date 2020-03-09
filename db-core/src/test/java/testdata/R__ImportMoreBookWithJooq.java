@@ -4,13 +4,10 @@ import static org.jooq.impl.DSL.using;
 
 import java.time.LocalDate;
 
-import javax.sql.DataSource;
-
 import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
-import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import jp.co.ctc.wjs.db.jooq.gen.tables.JItem;
 import jp.co.ctc.wjs.db.jooq.gen.tables.records.ItemRecord;
@@ -27,8 +24,6 @@ public class R__ImportMoreBookWithJooq extends BaseJavaMigration {
      */
     @Override
     public void migrate(final Context context) throws Exception {
-
-        DataSource ds = new SingleConnectionDataSource(context.getConnection(), true);
 
         DSLContext dslContext = using(context.getConnection(), SQLDialect.MYSQL);
 
